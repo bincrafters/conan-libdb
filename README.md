@@ -1,5 +1,5 @@
 [![Download](https://api.bintray.com/packages/bincrafters/public-conan/libdb%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/libdb%3Abincrafters/_latestVersion)
-[![Build Status](https://travis-ci.org/bincrafters/conan-libdb.svg?branch=stable%2F5.3.28)](https://travis-ci.org/bincrafters/conan-libdb)
+[![Build Status](https://travis-ci.org/bincrafters/conan-libdb.svg?branch=stable%2F6.2.32)](https://travis-ci.org/bincrafters/conan-libdb)
 
 [Conan.io](https://conan.io) package recipe for [*libdb*](https://www.oracle.com/database/berkeley-db/).
 
@@ -11,14 +11,14 @@ The packages generated with this **conanfile** can be found on [Bintray](https:/
 
 ### Basic setup
 
-    $ conan install libdb/5.3.28@bincrafters/stable
+    $ conan install libdb/6.2.32@bincrafters/stable
 
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
 
     [requires]
-    libdb/5.3.28@bincrafters/stable
+    libdb/6.2.32@bincrafters/stable
 
     [generators]
     txt
@@ -55,7 +55,7 @@ The following command both runs all the steps of the conan file, and publishes t
 
 ## Upload
 
-    $ conan upload libdb/5.3.28@bincrafters/stable --all -r bincrafters
+    $ conan upload libdb/6.2.32@bincrafters/stable --all -r bincrafters
 
 
 ## Conan Recipe License
@@ -63,4 +63,4 @@ The following command both runs all the steps of the conan file, and publishes t
 NOTE: The conan recipe license applies only to the files of this recipe, which can be used to build and package libdb.
 It does *not* in any way apply or is related to the actual software being packaged.
 
-[MIT](https://github.com/bincrafters/bincrafters-libdb/blob/testing/5.3.28/LICENSE)
+[MIT](https://github.com/bincrafters/bincrafters-libdb/blob/testing/6.2.32/LICENSE)

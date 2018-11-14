@@ -5,7 +5,7 @@ import shutil
 
 class LibnslConan(ConanFile):
     name = "libdb"
-    version = "5.3.28"
+    version = "6.2.32"
     description = "Berkeley DB is a family of embedded key-value database libraries providing scalable high-performance data management services to applications. The Berkeley DB products use simple function-call APIs for data access and management."
     topics = ("conan", "gdbm", "dbm", "hash", "database")
     url = "https://github.com/bincrafters/conan-libdb"
@@ -45,7 +45,7 @@ class LibnslConan(ConanFile):
 
     def source(self):
         url = "http://download.oracle.com/berkeley-db/db-{version}.tar.gz".format(version=self.version)
-        sha256 = "e0a992d740709892e81f9d93f06daf305cf73fb81b545afe72478043172c3628"
+        sha256 = "a9c5e2b004a5777aa03510cfe5cd766a4a3b777713406b02809c17c8e0e7a8fb"
         tools.get(url, sha256=sha256)
         os.rename("db-{}".format(self.version), self._source_subfolder)
 
@@ -56,10 +56,6 @@ class LibnslConan(ConanFile):
                               "\n    --datarootdir=*)"
                               "\n      ;;"
                               "\n    --disable-option-checking)")
-
-        tools.replace_in_file(os.path.join(self.source_folder, self._source_subfolder, "src", "dbinc", "atomic.h"),
-                              "__atomic_compare_exchange",
-                              "__db_atomic_compare_exchange")
 
     def build(self):
         autotools = AutoToolsBuildEnvironment(self)
