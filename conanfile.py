@@ -15,7 +15,7 @@ class LibdbConan(ConanFile):
     url = "https://github.com/bincrafters/conan-libdb"
     homepage = "https://www.oracle.com/database/berkeley-db/"
     author = "Bincrafters <bincrafters@gmail.com>"
-    license = ("BSD", "LGPLv2", "Sleepycat")
+    license = ("BSD-3-Clause", "LGPL-2.0-only", "Sleepycat")
     settings = "os", "compiler", "build_type", "arch"
     options = {
         "shared": [True, False],
@@ -31,8 +31,7 @@ class LibdbConan(ConanFile):
         "historic": True,
         "smallbuild": True,
     }
-    no_copy_source = True
-    _source_subfolder = "sources"
+    _source_subfolder = "source_subfolder"
 
     @property
     def _mingw_build(self):
@@ -48,18 +47,12 @@ class LibdbConan(ConanFile):
 
     def source(self):
         filename = "db-{}.tar.gz".format(self.version)
-        url = "http://download.oracle.com/berkeley-db/{}".format(filename)
         sha256 = "e0a992d740709892e81f9d93f06daf305cf73fb81b545afe72478043172c3628"
 
-        dlfilepath = os.path.join(tempfile.gettempdir(), filename)
-        if os.path.exists(dlfilepath) and not get_env("LIBDB_FORCE_DOWNLOAD", False):
-            self.output.info("Skipping download. Using cached {}".format(dlfilepath))
-        else:
-            tools.download(url, dlfilepath)
-        tools.check_sha256(dlfilepath, sha256)
-        tools.untargz(dlfilepath)
+        tools.get("http://download.oracle.com/berkeley-db/{}".format(filename), sha256=sha256)
         os.rename("{}-{}".format("db", self.version), self._source_subfolder)
 
+    def _fixup_source(self):
         dist_configure = os.path.join(self.source_folder, self._source_subfolder, "dist", "configure")
         tools.replace_in_file(dist_configure, "../$sqlite_dir", "$sqlite_dir")
         tools.replace_in_file(dist_configure,
@@ -73,19 +66,19 @@ class LibdbConan(ConanFile):
                               "__db_atomic_compare_exchange")
 
     def build(self):
+        self._fixup_source()
+
         autotools = AutoToolsBuildEnvironment(self)
         conf_args = [
             "--enable-debug" if self.settings.build_type == "Debug" else "--disable-debug",
             "--disable-static" if self.options.shared else "--enable-static",
             "--enable-shared" if self.options.shared else "--disable-shared",
-            "--disable-static" if self.options.shared else "--enable-static",
             "--enable-smallbuild" if self.options.smallbuild else "--disable-smallbuild",
             "--enable-dbm" if self.options.historic else "--disable-dbm",
             "--enable-mingw" if self._mingw_build else "--disable-mingw",
             "--enable-cxx",
             "--enable-compat185",
             "--enable-stl",
-            # "--enable-dump185",
             "--enable-sql",
         ]
         if self.options.tcl:
