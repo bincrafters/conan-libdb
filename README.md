@@ -1,5 +1,5 @@
 [![Download](https://api.bintray.com/packages/bincrafters/public-conan/libdb%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/libdb%3Abincrafters/_latestVersion)
-[![Build Status](https://travis-ci.org/bincrafters/conan-libdb.svg?branch=stable%2F6.2.32)](https://travis-ci.org/bincrafters/conan-libdb)
+[![Build Status](https://travis-ci.com/bincrafters/conan-libdb.svg?branch=stable%2F6.2.32)](https://travis-ci.com/bincrafters/conan-libdb)
 
 [Conan.io](https://conan.io) package recipe for [*libdb*](https://www.oracle.com/database/berkeley-db/).
 
