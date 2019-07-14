@@ -3,7 +3,7 @@ import os
 import shutil
 
 
-class LibnslConan(ConanFile):
+class LibdbConan(ConanFile):
     name = "libdb"
     version = "6.2.32"
     description = "Berkeley DB is a family of embedded key-value database libraries providing scalable high-performance data management services to applications. The Berkeley DB products use simple function-call APIs for data access and management."
