@@ -36,6 +36,7 @@ class LibdbConan(ConanFile):
 
     def config_options(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
         if self.options.shared:
             del self.options.fPIC
 
