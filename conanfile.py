@@ -10,7 +10,6 @@ class LibdbConan(ConanFile):
     topics = ("conan", "gdbm", "dbm", "hash", "database")
     url = "https://github.com/bincrafters/conan-libdb"
     homepage = "https://www.oracle.com/database/berkeley-db/"
-    author = "Bincrafters <bincrafters@gmail.com>"
     license = ("BSD", "LGPLv2", "Sleepycat")
     settings = "os", "compiler", "build_type", "arch"
     options = {
