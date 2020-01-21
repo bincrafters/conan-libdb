@@ -41,7 +41,7 @@ class LibdbConan(ConanFile):
 
     def requirements(self):
         if self.options.tcl:
-            self.requires("tcl/8.6.9@bincrafters/stable")
+            self.requires("tcl/8.6.10")
 
     def source(self):
         url = "http://download.oracle.com/berkeley-db/db-{version}.tar.gz".format(version=self.version)
